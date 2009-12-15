@@ -33,6 +33,7 @@ sub get_entries {
                 name    => do {
                     local $_ = "$f";
                     s/^$config->{data_dir}|\..*$//g;
+                    $_ =~ s!\\!/!g;
                     $_;
                 }
             };
