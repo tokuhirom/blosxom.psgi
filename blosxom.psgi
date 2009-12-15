@@ -7,7 +7,6 @@ use 5.010;
 use Path::Class qw/dir/;
 use Text::MicroTemplate::File;
 use Time::Piece;
-use Encode qw/encode_utf8/;
 
 my $config = {
     data_dir => 'data/',
@@ -81,7 +80,7 @@ sub {
     });
 
     # create response
-    $body = encode_utf8($body);
+    utf8::encode($body);
     return [
         200,
         [
