@@ -1,0 +1,4 @@
+blosxom clone for psgi
+======================
+
+see http://coderepos.org/share/wiki/BlosxomClones
