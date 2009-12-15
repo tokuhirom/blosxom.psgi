@@ -1,0 +1,165 @@
+? my $args = shift;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?= $args->{title} ?></title>
+		<link rel="alternate" title="Atom" type="application/atom+xml" href="<?= $args->{home} ?>/index.atom"/>
+		<style type="text/css">
+			body {
+				background: #fff;
+				color: #555;
+				padding: 0 10%;
+				line-height: 1.75;
+			}
+
+			var {
+				text-decoration: underline;
+				color: #666;
+			}
+
+			hr {
+				border-style: solid;
+				border-width: 1px 0 0;
+				border-color: #eee;
+				height: 1px;
+				margin: 1em 0;
+			}
+
+			.all {
+				width: 45em;
+			}
+
+			a:link {
+				color: #d06c6b;
+			}
+
+			a:visited {
+				color: #b44e4d;
+			}
+
+			a:hover {
+				text-decoration: none;
+			}
+
+			h1, h2, h3 {
+				font-weight: normal;
+			}
+
+			.hentry {
+				border-top: 1px solid #ddd;
+				padding: 1em 0;
+			}
+
+			h3 {
+				color: #d06c6b;
+				margin: 0 0 1em 0;
+			}
+
+			dl.information {
+				margin: 0;
+				color: #ccc;
+				font-size: 80%;
+				text-align: right;
+				line-height: 1.33;
+			}
+
+			dl.information dt {
+				margin: 0 13em 0 0;
+				padding: 0;
+			}
+
+			dl.information dd {
+				overflow: hidden;
+				white-space: nowrap;
+				padding: 0;
+			}
+
+			#top a:link,
+			#top a:visited,
+			#top a:hover,
+			#top a {
+				text-decoration: none;
+			}
+
+			#footer {
+				font-size: 80%;
+				color: #999;
+				text-align: center;
+			}
+
+			.debug-info {
+				text-align: left;
+			}
+
+			pre {
+				overflow: auto;
+				font-size: 90%;
+				padding: 1em;
+				line-height: 1.2;
+				background: #efefef;
+				border: 1px solid #ccc;
+				color: #555;
+			}
+
+			.comment {
+				margin: 0 0 1em 0;
+			}
+
+			.comment h4 {
+				margin: 0;
+			}
+
+			.comment h4 .time {
+				font-size: 80%;
+			}
+
+			.comment-body {
+				background: #efefef;
+				padding: 0.5em 1em;
+			}
+
+			.comment-message {
+				border: 1px solid #900;
+				background: #ffe0e0;
+				padding: 1em;
+				font-weight: bold;
+				color: #900;
+			}
+
+			input.text,
+			textarea {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="all">
+			<h1 id="top"><a href="<?= $args->{home} ?>/"><?= $args->{title} ?></a></h1>
+
+			<div id="content" class="hfeed">
+				<h2>Entries</h2>
+				<? for my $entry (@{ $args->{entries} }) { ?>
+				<div class="hentry">
+					<h3 class="entry-title">
+						<a href="<?= $args->{home} ?><?= $entry->{name} ?>"><?= $entry->{title} ?></a>
+					</h3>
+					<div class="entry-content">
+						<?= $entry->{content} ?>
+					</div>
+					<dl class="information">
+						<dt>DateTime</dt>
+						<dd><?= $entry->{mtime}->ymd() ?></dd>
+						<dt>Path</dt>
+						<dd><a href="<?= $args->{home} ?><?= $entry->{name} ?>"><?= $entry->{name} ?></a></dd>
+					</dl>
+
+				</div>
+				<? } ?>
+			</div>
+
+			<div id="footer">
+				<p>Perl on Plack</p>
+			</div>
+		</div>
+	</body>
+</html>
